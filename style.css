@@ -1,0 +1,840 @@
+/* ==========================================
+   SMART TILL
+   CHAMELEON PURPLE EDITION
+========================================== */
+
+:root{
+
+--bg:#050505;
+--bg-secondary:#0d0d0d;
+--panel:#131313;
+--panel-light:#1b1b1b;
+
+--purple:#7b2cbf;
+--purple-dark:#4c1d95;
+--purple-light:#c77dff;
+
+--accent:#e0aaff;
+
+--success:#00d27a;
+--danger:#ff4d6d;
+--warning:#ffaa00;
+
+--text:#ffffff;
+--text-soft:#c7c7c7;
+
+--border:rgba(255,255,255,.08);
+
+--glass:rgba(255,255,255,.03);
+
+--shadow:
+0 20px 50px rgba(0,0,0,.45);
+
+--gradient-main:
+linear-gradient(
+135deg,
+#050505 0%,
+#1a0033 30%,
+#4c1d95 60%,
+#7b2cbf 100%
+);
+
+--gradient-button:
+linear-gradient(
+135deg,
+#4c1d95,
+#7b2cbf,
+#c77dff
+);
+
+--gradient-card:
+linear-gradient(
+145deg,
+rgba(255,255,255,.04),
+rgba(255,255,255,.01)
+);
+
+}
+
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:
+Inter,
+Segoe UI,
+sans-serif;
+
+background:
+radial-gradient(
+circle at top right,
+rgba(199,125,255,.15),
+transparent 30%
+),
+radial-gradient(
+circle at bottom left,
+rgba(123,44,191,.15),
+transparent 30%
+),
+var(--bg);
+
+color:var(--text);
+
+min-height:100vh;
+
+overflow-x:hidden;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.top-bar{
+
+background:var(--gradient-main);
+
+height:90px;
+
+padding:20px 35px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+border-bottom:
+1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 10px 40px rgba(123,44,191,.2);
+
+}
+
+.brand{
+
+display:flex;
+align-items:center;
+gap:20px;
+
+}
+
+.logo{
+
+width:60px;
+height:60px;
+
+border-radius:15px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:32px;
+
+background:
+rgba(255,255,255,.12);
+
+backdrop-filter:blur(10px);
+
+}
+
+.brand h1{
+
+font-size:28px;
+font-weight:800;
+
+}
+
+.brand span{
+
+opacity:.8;
+
+}
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+.progress-wrapper{
+
+display:flex;
+justify-content:center;
+gap:15px;
+
+padding:20px;
+
+background:#080808;
+
+border-bottom:
+1px solid rgba(255,255,255,.05);
+
+}
+
+.progress-step{
+
+padding:12px 22px;
+
+border-radius:50px;
+
+background:#171717;
+
+color:#999;
+
+font-weight:600;
+
+transition:.3s;
+}
+
+.progress-step.active{
+
+background:var(--gradient-button);
+
+color:white;
+
+box-shadow:
+0 0 25px rgba(199,125,255,.45);
+
+}
+
+/* ==========================================
+   SCREENS
+========================================== */
+
+.screen{
+
+display:none;
+
+padding:20px;
+
+}
+
+.active-screen{
+
+display:block;
+
+animation:fadeIn .35s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(15px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* ==========================================
+   PANELS
+========================================== */
+
+.catalogue-section,
+.basket-panel,
+.payment-panel,
+.receipt-panel,
+.welcome-panel,
+.staff-panel,
+.modal-content{
+
+background:var(--gradient-card);
+
+backdrop-filter:blur(18px);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+border-radius:24px;
+
+box-shadow:var(--shadow);
+
+}
+
+/* ==========================================
+   WELCOME
+========================================== */
+
+.welcome-panel{
+
+max-width:900px;
+
+margin:50px auto;
+
+padding:50px;
+
+text-align:center;
+
+}
+
+.welcome-panel h2{
+
+font-size:42px;
+
+margin-bottom:15px;
+
+background:linear-gradient(
+90deg,
+white,
+#e0aaff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+.instructions{
+
+padding:25px;
+
+background:rgba(255,255,255,.03);
+
+border-radius:18px;
+
+margin:30px 0;
+
+}
+
+/* ==========================================
+   SHOPPING LAYOUT
+========================================== */
+
+.shopping-layout{
+
+display:grid;
+
+grid-template-columns:
+2.3fr 1fr;
+
+gap:25px;
+
+}
+
+/* ==========================================
+   SCANNER
+========================================== */
+
+.scanner-box{
+
+padding:20px;
+
+background:rgba(255,255,255,.02);
+
+border-radius:18px;
+
+margin-bottom:20px;
+
+}
+
+.scanner-area{
+
+height:130px;
+
+border:
+2px dashed #c77dff;
+
+border-radius:20px;
+
+background:
+rgba(123,44,191,.08);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+position:relative;
+
+overflow:hidden;
+
+font-size:22px;
+
+}
+
+.scanner-area::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+right:0;
+
+height:3px;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+#e0aaff,
+transparent
+);
+
+animation:scan 2s linear infinite;
+}
+
+@keyframes scan{
+
+0%{top:0;}
+100%{top:100%;}
+
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+input,
+select{
+
+width:100%;
+
+padding:14px 16px;
+
+background:#111;
+
+color:white;
+
+border:
+1px solid rgba(255,255,255,.08);
+
+border-radius:14px;
+
+font-size:15px;
+
+}
+
+input:focus,
+select:focus{
+
+outline:none;
+
+border-color:#c77dff;
+
+box-shadow:
+0 0 20px rgba(199,125,255,.25);
+
+}
+
+/* ==========================================
+   PRODUCT GRID
+========================================== */
+
+.product-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fill,minmax(230px,1fr));
+
+gap:20px;
+
+}
+
+.product-card{
+
+background:#121212;
+
+border:
+1px solid rgba(255,255,255,.07);
+
+border-radius:18px;
+
+overflow:hidden;
+
+transition:.3s;
+
+}
+
+.product-card:hover{
+
+transform:translateY(-6px);
+
+border-color:#c77dff;
+
+box-shadow:
+0 0 30px rgba(123,44,191,.35);
+
+}
+
+.product-image{
+
+height:170px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:70px;
+
+background:
+linear-gradient(
+135deg,
+#220044,
+#5a189a
+);
+
+}
+
+.product-content{
+
+padding:18px;
+
+}
+
+.product-price{
+
+font-size:20px;
+
+font-weight:700;
+
+color:#e0aaff;
+
+margin-top:10px;
+
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+button{
+
+border:none;
+
+cursor:pointer;
+
+border-radius:14px;
+
+padding:14px 20px;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+}
+
+.primary-btn{
+
+background:var(--gradient-button);
+
+color:white;
+
+}
+
+.success-btn{
+
+background:
+linear-gradient(
+135deg,
+#00d27a,
+#008f58
+);
+
+color:white;
+
+}
+
+.danger-btn{
+
+background:
+linear-gradient(
+135deg,
+#ff4d6d,
+#c9184a
+);
+
+color:white;
+
+}
+
+.secondary-btn{
+
+background:#2b2b2b;
+
+color:white;
+
+}
+
+/* ==========================================
+   BASKET
+========================================== */
+
+.basket-panel{
+
+padding:25px;
+
+position:sticky;
+
+top:20px;
+
+height:fit-content;
+
+}
+
+.basket-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+}
+
+.basket-item{
+
+padding:15px;
+
+margin-bottom:12px;
+
+background:
+rgba(255,255,255,.03);
+
+border-radius:14px;
+
+}
+
+.grand-total{
+
+font-size:32px;
+
+font-weight:800;
+
+color:#e0aaff;
+
+text-shadow:
+0 0 20px rgba(224,170,255,.5);
+
+}
+
+/* ==========================================
+   KEYPAD
+========================================== */
+
+.keypad{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:12px;
+
+}
+
+.keypad button{
+
+height:60px;
+
+font-size:20px;
+
+background:#181818;
+
+color:white;
+
+}
+
+.keypad button:hover{
+
+background:#2a1245;
+
+}
+
+/* ==========================================
+   MODALS
+========================================== */
+
+.modal{
+
+display:none;
+
+position:fixed;
+
+inset:0;
+
+background:
+rgba(0,0,0,.75);
+
+backdrop-filter:blur(5px);
+
+align-items:center;
+justify-content:center;
+
+z-index:999;
+
+}
+
+/* ==========================================
+   FLOATING BUTTONS
+========================================== */
+
+.help-btn,
+.staff-btn{
+
+position:fixed;
+
+bottom:25px;
+
+padding:16px 24px;
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.35);
+
+}
+
+.help-btn{
+
+right:20px;
+
+background:var(--gradient-button);
+
+color:white;
+
+}
+
+.staff-btn{
+
+left:20px;
+
+background:#151515;
+
+color:white;
+
+}
+
+/* ==========================================
+   RECEIPT
+========================================== */
+
+.receipt-panel{
+
+max-width:900px;
+
+padding:40px;
+
+margin:auto;
+
+}
+
+.receipt-actions{
+
+margin-top:25px;
+
+display:flex;
+
+gap:15px;
+
+}
+
+/* ==========================================
+   TOAST
+========================================== */
+
+.toast{
+
+position:fixed;
+
+top:20px;
+right:20px;
+
+padding:16px 24px;
+
+background:var(--gradient-button);
+
+color:white;
+
+border-radius:14px;
+
+font-weight:600;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.4s;
+
+z-index:5000;
+
+}
+
+.toast.show{
+
+opacity:1;
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-track{
+background:#0d0d0d;
+}
+
+::-webkit-scrollbar-thumb{
+background:#7b2cbf;
+border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background:#c77dff;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width: 950px){
+
+.shopping-layout{
+
+grid-template-columns:1fr;
+
+}
+
+.basket-panel{
+
+position:relative;
+
+}
+
+.payment-options{
+
+grid-template-columns:1fr;
+
+}
+
+.progress-wrapper{
+
+flex-wrap:wrap;
+
+}
+
+}

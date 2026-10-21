@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Smart Till Self-Service Checkout</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="top-bar">
+
+    <div class="brand">
+        <div class="logo">🛒</div>
+        <div>
+            <h1>Smart Till</h1>
+            <span>Self-Service Checkout</span>
+        </div>
+    </div>
+
+    <div class="language-section">
+        <select id="languageSelect">
+            <option>English</option>
+        </select>
+    </div>
+
+</header>
+
+<!-- PROGRESS BAR -->
+
+<section class="progress-wrapper">
+    <div class="progress-step active" data-step="1">
+        Welcome
+    </div>
+
+    <div class="progress-step" data-step="2">
+        Shopping
+    </div>
+
+    <div class="progress-step" data-step="3">
+        Review
+    </div>
+
+    <div class="progress-step" data-step="4">
+        Payment
+    </div>
+
+    <div class="progress-step" data-step="5">
+        Receipt
+    </div>
+</section>
+
+<!-- WELCOME SCREEN -->
+
+<section id="welcomeScreen" class="screen active-screen">
+
+    <div class="welcome-panel">
+
+        <h2>Welcome to Self-Service Checkout</h2>
+
+        <p>
+            Scan products, review your basket,
+            complete payment and receive a digital receipt.
+        </p>
+
+        <div class="instructions">
+
+            <h3>How it works</h3>
+
+            <ol>
+                <li>Scan or enter product code</li>
+                <li>Add items to basket</li>
+                <li>Review purchases</li>
+                <li>Choose payment method</li>
+                <li>Collect receipt</li>
+            </ol>
+
+        </div>
+
+        <button id="startShoppingBtn" class="primary-btn large-btn">
+            Start Shopping
+        </button>
+
+    </div>
+
+</section>
+
+<!-- SHOPPING SCREEN -->
+
+<section id="shoppingScreen" class="screen">
+
+<div class="shopping-layout">
+
+    <!-- LEFT PANEL -->
+
+    <div class="catalogue-section">
+
+        <div class="scanner-box">
+
+            <h2>Product Scanner</h2>
+
+            <div class="scanner-area">
+
+                <span>📷 Scanner Simulation</span>
+
+            </div>
+
+            <div class="scan-controls">
+
+                <input
+                    type="text"
+                    id="barcodeInput"
+                    placeholder="Enter Barcode or SKU">
+
+                <button id="scanBtn" class="primary-btn">
+                    Scan Product
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- KEYPAD -->
+
+        <div class="keypad-container">
+
+            <h3>Numeric Keypad</h3>
+
+            <div class="keypad">
+
+                <button class="key">1</button>
+                <button class="key">2</button>
+                <button class="key">3</button>
+
+                <button class="key">4</button>
+                <button class="key">5</button>
+                <button class="key">6</button>
+
+                <button class="key">7</button>
+                <button class="key">8</button>
+                <button class="key">9</button>
+
+                <button id="clearKey">CLR</button>
+                <button class="key">0</button>
+                <button id="backKey">⌫</button>
+
+            </div>
+
+        </div>
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search products">
+
+            <select id="categoryFilter">
+
+                <option value="all">All Categories</option>
+
+                <option value="Groceries">Groceries</option>
+                <option value="Drinks">Drinks</option>
+                <option value="Snacks">Snacks</option>
+                <option value="Fresh Produce">Fresh Produce</option>
+                <option value="Household">Household</option>
+                <option value="Personal Care">Personal Care</option>
+
+            </select>
+
+        </div>
+
+        <!-- PRODUCT GRID -->
+
+        <div id="productGrid" class="product-grid">
+        </div>
+
+    </div>
+
+    <!-- BASKET -->
+
+    <aside class="basket-panel">
+
+        <div class="basket-header">
+
+            <h2>Shopping Basket</h2>
+
+            <button id="clearBasketBtn" class="danger-btn">
+                Clear Basket
+            </button>
+
+        </div>
+
+        <div id="basketItems" class="basket-items">
+        </div>
+
+        <div class="basket-summary">
+
+            <div>
+                Distinct Items:
+                <span id="distinctItems">0</span>
+            </div>
+
+            <div>
+                Quantity:
+                <span id="totalQty">0</span>
+            </div>
+
+            <hr>
+
+            <div>
+                Subtotal:
+                <span id="subtotal">AED 0.00</span>
+            </div>
+
+            <div>
+                Discount:
+                <span id="discount">AED 0.00</span>
+            </div>
+
+            <div>
+                Tax:
+                <span id="tax">AED 0.00</span>
+            </div>
+
+            <div class="grand-total">
+
+                Total:
+                <span id="grandTotal">AED 0.00</span>
+
+            </div>
+
+            <button
+                id="checkoutBtn"
+                class="success-btn checkout-btn">
+
+                Checkout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+</div>
+
+</section>
+
+<!-- PAYMENT SCREEN -->
+
+<section id="paymentScreen" class="screen">
+
+    <div class="payment-panel">
+
+        <h2>Select Payment Method</h2>
+
+        <div class="payment-options">
+
+            <button class="payment-method" data-method="Card">
+                💳 Bank Card
+            </button>
+
+            <button class="payment-method"
+                data-method="Contactless">
+                📶 Contactless
+            </button>
+
+            <button class="payment-method"
+                data-method="Wallet">
+                📱 Mobile Wallet
+            </button>
+
+            <button class="payment-method"
+                data-method="Cash">
+                💵 Cash
+            </button>
+
+        </div>
+
+        <div id="paymentArea"></div>
+
+        <button id="backToBasket" class="secondary-btn">
+            Back
+        </button>
+
+    </div>
+
+</section>
+
+<!-- RECEIPT -->
+
+<section id="receiptScreen" class="screen">
+
+    <div class="receipt-panel">
+
+        <div id="receiptContent">
+        </div>
+
+        <div class="receipt-actions">
+
+            <button id="printReceiptBtn"
+                class="primary-btn">
+                Print Receipt
+            </button>
+
+            <button id="newTransactionBtn"
+                class="success-btn">
+                New Transaction
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STAFF HELP -->
+
+<button id="helpButton" class="help-btn">
+    Need Help?
+</button>
+
+<div id="helpModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>Customer Assistance</h2>
+
+        <p>
+            Demo Assistance Request
+        </p>
+
+        <button id="requestHelpBtn">
+            Request Staff Assistance
+        </button>
+
+        <button id="scanIssueBtn">
+            Report Scanning Issue
+        </button>
+
+        <button id="paymentIssueBtn">
+            Report Payment Issue
+        </button>
+
+        <button id="cancelHelpBtn">
+            Cancel Request
+        </button>
+
+        <button id="closeHelpModal">
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+<!-- STAFF DASHBOARD -->
+
+<div id="staffModal" class="modal">
+
+    <div class="staff-panel">
+
+        <h2>Staff Dashboard</h2>
+
+        <div id="staffLogin">
+
+            <input
+                type="password"
+                id="staffPin"
+                placeholder="Enter Demo PIN">
+
+            <button id="staffLoginBtn">
+                Login
+            </button>
+
+            <p>
+                Demo PIN: 1234
+            </p>
+
+        </div>
+
+        <div id="staffDashboard"
+            class="hidden">
+
+            <div class="staff-stats">
+
+                <div>
+                    Transactions:
+                    <span id="transactionCount">
+                    </span>
+                </div>
+
+                <div>
+                    Sales:
+                    <span id="salesTotal">
+                    </span>
+                </div>
+
+            </div>
+
+            <div id="recentTransactions">
+            </div>
+
+            <button id="resetDataBtn"
+                class="danger-btn">
+                Reset Demo Data
+            </button>
+
+        </div>
+
+        <button id="closeStaffPanel">
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+<button id="openStaffDashboard"
+    class="staff-btn">
+    Staff
+</button>
+
+<!-- TOAST -->
+
+<div id="toast" class="toast">
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
